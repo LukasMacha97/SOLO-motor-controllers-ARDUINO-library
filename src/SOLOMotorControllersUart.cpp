@@ -75,7 +75,7 @@ bool SOLOMotorControllersUart::ExeCMD(unsigned char cmd[], int &error)
 
         //DELAY for default serial of Arduino 
         //(Arduino serial is shared with usb line and can be over noise line)
-        if(serialToUse == &Serial)
+        if(serialToUse == &Serial_)
         {
             //Serial.println("DELAY");
             delay(50);

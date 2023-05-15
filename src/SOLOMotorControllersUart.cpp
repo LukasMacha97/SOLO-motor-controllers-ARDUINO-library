@@ -19,7 +19,7 @@
 
 
 // -------------------- constructor & destructor --------------------
-SOLOMotorControllersUart::SOLOMotorControllersUart(unsigned char _deviceAddress, SoftwareSerial &_serial = sw_serial, SOLOMotorControllers::UartBaudrate _baudrate, long _millisecondsTimeout, int _packetFailureTrialAttempts)
+SOLOMotorControllersUart::SOLOMotorControllersUart(unsigned char _deviceAddress, HardwareSerial &_serial, SOLOMotorControllers::UartBaudrate _baudrate, long _millisecondsTimeout, int _packetFailureTrialAttempts)
     :addr( _deviceAddress )
     ,serialToUse(&_serial)
     ,millisecondsTimeout(_millisecondsTimeout)
@@ -75,11 +75,11 @@ bool SOLOMotorControllersUart::ExeCMD(unsigned char cmd[], int &error)
 
         //DELAY for default serial of Arduino 
         //(Arduino serial is shared with usb line and can be over noise line)
-        // if(serialToUse == &Serial)
-        // {
-        //     //Serial.println("DELAY");
-        //     delay(50);
-        // }
+        if(serialToUse == &Serial)
+        {
+            //Serial.println("DELAY");
+            delay(50);
+        }
         serialToUse->write(_cmd,10);
         size_t returned = serialToUse->readBytes(_readPacket, 10);  //read received data 
 

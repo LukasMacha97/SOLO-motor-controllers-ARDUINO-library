@@ -16,11 +16,10 @@
  */
 
 #include <stdint.h>
-// #include <HardwareSerial.h>
+#include <HardwareSerial.h>
 #include "Arduino.h"
 #include "SOLOMotorControllers.h"
 #include "SOLOMotorControllersUtils.h"
-#include <SoftwareSerial.h>
 
 /** @defgroup UART_Commands UART Commands
   * @brief All uart command hex code
@@ -141,8 +140,6 @@
 #define ReadMotionProfileVariable3          0xBE
 #define ReadMotionProfileVariable4          0xBF
 #define ReadMotionProfileVariable5          0xC0
-
-// SoftwareSerial sw_serial(6,7);
 /**
   * @}
   */
@@ -154,15 +151,14 @@ class SOLOMotorControllersUart : public SOLOMotorControllers
 {   
     private:
         unsigned char addr;
-        // HardwareSerial *serialToUse;
-        SoftwareSerial *serialToUse; 
+        HardwareSerial *serialToUse;
         long baudrate;
         long millisecondsTimeout;
         int packetFailureTrialAttempts;
         SOLOMotorControllersUtils *soloUtils;
 
     public:
-        SOLOMotorControllersUart(unsigned char _deviceAddress = 0, SoftwareSerial &_serial = sw_serial,  SOLOMotorControllers::UartBaudrate _baudrate = SOLOMotorControllers::UartBaudrate::rate115200, long _millisecondsTimeout = 200, int _packetFailureTrialAttempts = 5);
+        SOLOMotorControllersUart(unsigned char _deviceAddress = 0, HardwareSerial &_serial = Serial_ ,  SOLOMotorControllers::UartBaudrate _baudrate = SOLOMotorControllers::UartBaudrate::rate115200, long _millisecondsTimeout = 200, int _packetFailureTrialAttempts = 5);
 
     private:
         bool ExeCMD(unsigned char cmd[], int &error);

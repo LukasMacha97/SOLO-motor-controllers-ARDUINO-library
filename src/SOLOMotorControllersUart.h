@@ -16,10 +16,11 @@
  */
 
 #include <stdint.h>
-#include <HardwareSerial.h>
+// #include <HardwareSerial.h>
 #include "Arduino.h"
 #include "SOLOMotorControllers.h"
 #include "SOLOMotorControllersUtils.h"
+#include <SoftwareSerial.h>
 
 /** @defgroup UART_Commands UART Commands
   * @brief All uart command hex code
@@ -151,14 +152,15 @@ class SOLOMotorControllersUart : public SOLOMotorControllers
 {   
     private:
         unsigned char addr;
-        HardwareSerial *serialToUse;
+        // HardwareSerial *serialToUse;
+        SoftwareSerial *serialToUse; 
         long baudrate;
         long millisecondsTimeout;
         int packetFailureTrialAttempts;
         SOLOMotorControllersUtils *soloUtils;
 
     public:
-        SOLOMotorControllersUart(unsigned char _deviceAddress = 0, HardwareSerial &_serial = Serial ,  SOLOMotorControllers::UartBaudrate _baudrate = SOLOMotorControllers::UartBaudrate::rate115200, long _millisecondsTimeout = 200, int _packetFailureTrialAttempts = 5);
+        SOLOMotorControllersUart(unsigned char _deviceAddress = 0, SoftwareSerial &_serial = Serial ,  SOLOMotorControllers::UartBaudrate _baudrate = SOLOMotorControllers::UartBaudrate::rate115200, long _millisecondsTimeout = 200, int _packetFailureTrialAttempts = 5);
 
     private:
         bool ExeCMD(unsigned char cmd[], int &error);

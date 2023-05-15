@@ -142,7 +142,7 @@
 #define ReadMotionProfileVariable4          0xBF
 #define ReadMotionProfileVariable5          0xC0
 
-SoftwareSerial sw_serial(6,7);
+// SoftwareSerial sw_serial(6,7);
 /**
   * @}
   */

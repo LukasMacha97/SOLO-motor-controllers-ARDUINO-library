@@ -19,7 +19,7 @@
 
 
 // -------------------- constructor & destructor --------------------
-SOLOMotorControllersUart::SOLOMotorControllersUart(unsigned char _deviceAddress, SoftwareSerial &_serial, SOLOMotorControllers::UartBaudrate _baudrate, long _millisecondsTimeout, int _packetFailureTrialAttempts)
+SOLOMotorControllersUart::SOLOMotorControllersUart(unsigned char _deviceAddress, SoftwareSerial &_serial = Serial, SOLOMotorControllers::UartBaudrate _baudrate, long _millisecondsTimeout, int _packetFailureTrialAttempts)
     :addr( _deviceAddress )
     ,serialToUse(&_serial)
     ,millisecondsTimeout(_millisecondsTimeout)

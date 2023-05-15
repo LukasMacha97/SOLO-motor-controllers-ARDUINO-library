@@ -141,6 +141,8 @@
 #define ReadMotionProfileVariable3          0xBE
 #define ReadMotionProfileVariable4          0xBF
 #define ReadMotionProfileVariable5          0xC0
+
+SoftwareSerial sw_serial(6,7);
 /**
   * @}
   */
@@ -160,7 +162,7 @@ class SOLOMotorControllersUart : public SOLOMotorControllers
         SOLOMotorControllersUtils *soloUtils;
 
     public:
-        SOLOMotorControllersUart(unsigned char _deviceAddress = 0, SoftwareSerial &_serial = Serial,  SOLOMotorControllers::UartBaudrate _baudrate = SOLOMotorControllers::UartBaudrate::rate115200, long _millisecondsTimeout = 200, int _packetFailureTrialAttempts = 5);
+        SOLOMotorControllersUart(unsigned char _deviceAddress = 0, SoftwareSerial &_serial = sw_serial,  SOLOMotorControllers::UartBaudrate _baudrate = SOLOMotorControllers::UartBaudrate::rate115200, long _millisecondsTimeout = 200, int _packetFailureTrialAttempts = 5);
 
     private:
         bool ExeCMD(unsigned char cmd[], int &error);
